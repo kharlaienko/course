@@ -1,6 +1,9 @@
 <template>
 	<div class="layout">
 		<Header />
+		<div class="wrapper">
+			<slot />
+		</div>
 	</div>
 </template>
 
@@ -15,6 +18,14 @@ export default {
 .layout {
 	height: 100%;
 	width: 100%;
-	background-color: #e7e7e7;
+	background-color: var(--bg);
+	display: flex;
+	flex-direction: column;
+}
+.wrapper {
+	overflow-y: auto;
+	height: 100%;
+	flex-grow: 1;
+	padding-bottom: 2rem;
 }
 </style>

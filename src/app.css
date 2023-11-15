@@ -124,16 +124,31 @@ table {
    border-spacing: 0;
 }
 
+* {
+   box-sizing: border-box;
+}
+
+body {
+   overflow: hidden;
+}
+
 .container {
    max-width: 1360px;
    width: 100%;
    margin: 0 auto;
    padding: 0 1rem;
+   overflow-y: auto;
+   height: 100%;
 }
 
 :root {
+   --bg: #e9e9e9;
+
    --color: #000;
-   --border: #d0d0d0;
-   --box-shadow: rgba(17, 12, 46, 0.15) 0px 5px 14px 0px;
+   --color-oposite: #fff;
    --color-selected: #5d6dff;
+   --border: #d0d0d0;
+
+   --box-shadow: rgba(17, 12, 46, 0.15) 0px 5px 14px 0px;
+   --filled-box: inset 200px 0 0 0 #5d6dff;
 }

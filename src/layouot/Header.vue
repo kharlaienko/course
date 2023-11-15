@@ -1,20 +1,12 @@
 <template>
 	<header class="header">
-		<ul class="container header__list list">
-			<li class="list__item">
-				<router-link
+		<ul class="container header__list list" v-if="routes.length">
+			<li class="list__item" v-for="item in routes" :key="item.name">
+				<Link
+					:to="{ name: item.name }"
 					class="list__link"
-					:class="{ list__link_active: currentRouteName === 'home' }"
-					:to="{ name: 'home' }"
-					>Home</router-link
-				>
-			</li>
-			<li class="list__item">
-				<router-link
-					class="list__link"
-					:class="{ list__link_active: currentRouteName === 'results' }"
-					:to="{ name: 'results' }"
-					>Results</router-link
+					:isActive="currentRouteName === item.name.toLowerCase()"
+					>{{ item.name }}</Link
 				>
 			</li>
 		</ul>
@@ -22,16 +14,23 @@
 </template>
 
 <script>
+import Link from "../components/UI/Link.vue";
+import { routesList } from "../router/router";
 export default {
+	components: { Link },
 	computed: {
 		currentRouteName() {
 			return this.$route.name?.toLowerCase();
+		},
+
+		routes() {
+			return routesList || [];
 		},
 	},
 };
 </script>
 
-<style scoped>
+<style  scoped>
 .header {
 	padding: 1rem 0;
 	border-bottom: 1px solid var(--border);
@@ -45,15 +44,12 @@ export default {
 }
 
 .list .list__item {
-	margin: 0 3rem;
+	margin: 0 1.5rem;
 }
 
-.list .list__link {
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 1.5rem;
-}
-.list .list__link.list__link_active {
-	color: var(--color-selected);
+@media (min-width: 641px) {
+	.list .list__item {
+		margin: 0 3rem;
+	}
 }
 </style>
